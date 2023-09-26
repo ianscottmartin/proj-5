@@ -8,7 +8,7 @@ from models import User
 # All routes here!
 @app.route("/", methods=["GET"])
 def root():
-	return "<h1>Hello from root!</h1>"
+	return "<h1>Hello from root Baby yeah!</h1>"
 
 # RESTful route syntax
 class Users(Resource):

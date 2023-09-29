@@ -1,11 +1,11 @@
 // Layout.js
 import React from 'react';
-// import Navbar from './Navbar';
+import Navbar from './Navbar';
 
 const withNavbar = (WrappedComponent) => {
     return (props) => (
         <div>
-            {/* <Navbar /> */}
+            <Navbar />
             <WrappedComponent {...props} />
         </div>
     );

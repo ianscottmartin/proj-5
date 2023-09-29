@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 // import MyForm from './MyForm';
 import reportWebVitals from './reportWebVitals';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <App />
-    <Navbar />
+    {/* <Navbar /> */}
     {/* <MyForm /> */}
   </React.StrictMode>
 );

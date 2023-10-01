@@ -13,6 +13,7 @@ flask-cors = "*"
 ipdb = "*"
 flask-bcrypt = "*"
 faker = "*"
+flask-migrate = "*"
 
 [dev-packages]
 

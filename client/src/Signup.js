@@ -1,8 +1,37 @@
+// // Signup.js
+// import React from 'react';
+// import withNavbar from './Layout';
+
+// const Signup = () => {
+//     return (
+//         <div>
+//             <h2>Sign up</h2>
+//             <form>
+//                 <div>
+//             <label htmlFor="username">Username:</label>
+//             <input type="text" id="username" name="username" />
+//                 </div>
+//                 <div>
+//                     <label htmlFor="password">Password:</label>
+//                     <input type="password" id="password" name="password" />
+//                 </div>
+//                 <div>
+//                     <label htmlFor="confirmPassword">Conform Password:</label>
+//                     <input type="password" id="confrimPassword" name="confirmPassword" />
+//                 </div>
+//             </form>
+
+            
+//         </div>
+//     );
+// };
+
+// export default withNavbar(Signup);
 // Signup.js
 
 
 import React, { useState } from 'react';
-
+import withNavbar from './Layout'
 function Signup() {
     const [formData, setFormData] = useState({
         name: '',
@@ -50,5 +79,5 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default withNavbar(Signup);
 

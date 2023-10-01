@@ -4,8 +4,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
-import Contact from './Contact';
+import Reviews from './Reviews'
 import Login from './Login';
+import Signup from './Signup';
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
+        <Route path="/reviews" component={Reviews} />
+        <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} /> {/* Add Login component */}
       </Switch>
     </Router>

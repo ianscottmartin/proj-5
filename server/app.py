@@ -20,4 +20,7 @@ api.add_resource(Users, '/users')
 
 
 if __name__ == '__main__':
-    app.run(port=4000, debug=True)
+
+	# db.create_all()
+
+	app.run(port=4000, debug=True)

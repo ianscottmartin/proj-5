@@ -25,3 +25,33 @@ class User(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f"User {self.username}, ID: {self.id}"
+    
+class Artist(db.Model):
+    __table__name = "artists"
+
+    id= db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+
+    def __init__(self, name):
+        self.name = name
+
+class Museum(db.Model):
+    __table__name = "museums"
+
+    id= db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    city = db.Column(db.String)
+
+
+    def __init__(self, name, city):
+        self.name = name
+        self.city = city
+
+class City(db.Model):
+    __table__name = "cities"
+
+    id= db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+
+    def __init__(self, name):
+        self.name = name

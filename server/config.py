@@ -19,7 +19,7 @@ db.init_app(app)
 
 bcrypt =Bcrypt(app)
 
-CORS(app)
+CORS(app, resources={r"/api/*":{"origins": "*"}})
 
 api = Api(app)
 

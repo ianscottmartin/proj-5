@@ -7,9 +7,23 @@ from models import User, Review, Artist, Museum
 @app.route("/", methods=["GET"])
 def root():
     return "<h1>Hello from root Baby yeah!</h1>"
+# RESTful route syntax
+
+class Users(Resource):
+    def get(self):
+        users = [user.to_dict() for user in User.query.all()] 
+        return users, 200
+
+api.add_resource(Users, '/api/users')
+
+# Create an API endpoint to retrieve reviews
+@app.route('/api/reviews', methods=['GET'])
+def get_reviews():
+    reviews = Review.query.all()
+    return jsonify([review.to_dict() for review in reviews]), 200
 
 # Create a new review for a museum
-@app.route('/api/reviews/museums/<int:museum_id>', methods=['POST'])
+@app.route('/api/reviews/museums/<int:museum_id>', methods=['GET','POST'])
 def create_museum_review(museum_id):
     data = request.json
     new_review = Review(
@@ -34,7 +48,7 @@ def get_museum_reviews(museum_id):
     return jsonify([review.to_dict() for review in reviews]), 200
 
 # Create a new review for an artist
-@app.route('/api/reviews/artists/<int:artist_id>', methods=['POST'])
+@app.route('/api/reviews/artists/<int:artist_id>', methods=['GET', 'POST'])
 def create_artist_review(artist_id):
    
 
@@ -55,25 +69,11 @@ def create_artist_review(artist_id):
 # Retrieve reviews for an artist
 @app.route('/api/reviews/artists/<int:artist_id>', methods=['GET'])
 def get_artist_reviews(artist_id):
-    # Here, you can add code to fetch reviews for a specific artist (artist_id)
-    # Example: Query the database to get reviews for the specified artist
+#     # Here, you can add code to fetch reviews for a specific artist (artist_id)
+#     # Example: Query the database to get reviews for the specified artist
     reviews = Review.query.filter_by(artist_id=artist_id).all()
     return jsonify([review.to_dict() for review in reviews]), 200
 
-# RESTful route syntax
-
-class Users(Resource):
-    def get(self):
-        users = [user.to_dict() for user in User.query.all()] 
-        return users, 200
-
-api.add_resource(Users, '/api/users')
-
-# Create an API endpoint to retrieve reviews
-@app.route('/api/reviews', methods=['GET'])
-def get_reviews():
-    reviews = Review.query.all()
-    return jsonify([review.to_dict() for review in reviews]), 200
 
 
 if __name__ == '__main__':

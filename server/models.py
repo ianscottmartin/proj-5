@@ -12,7 +12,7 @@ class User(db.Model, SerializerMixin):
 
     @hybrid_property
     def password_hash(self):
-        return self._password_hash  # Fix the getter to return the password hash
+        return self._password_hash
 
     @password_hash.setter
     def password_hash(self, password):
@@ -58,13 +58,11 @@ class City(db.Model):
         self.name = name
 
 
-class Review(db.Model, SerializerMixin):  # Make sure to add SerializerMixin
+class Review(db.Model, SerializerMixin):
     __tablename__ = "reviews"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(
-        db.Integer, db.ForeignKey("users.id"), nullable=False
-    )  # Correct foreign key references
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     museum_id = db.Column(db.Integer, db.ForeignKey("museums.id"))
     artist_id = db.Column(db.Integer, db.ForeignKey("artists.id"))
     text = db.Column(db.Text, nullable=False)

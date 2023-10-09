@@ -1,8 +1,7 @@
-# proj-5
+# FlatIron Phase 5 Project
 
 Flask and React app exploring reviews of artists and museums.
 
-project final
 Table of Contents
 Description
 Getting Started

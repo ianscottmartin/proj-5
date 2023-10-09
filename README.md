@@ -38,4 +38,4 @@ Make sure to have these packages installed
 flask, flask-sqlalchemy, flask-migrate, sqlalchemy-serlizer, flask-cors, formik,react, react-router-dom, Bcrypt,flask_restful
 
 Installation
-we wanna run pipenv install & shell to download the dependencies We want to run flask db init, flask db upgrade head for our migrations
+run pipenv install & shell to download the dependencies We want to run flask db init, flask db upgrade head for our migrations.

@@ -2,6 +2,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy_serializer import SerializerMixin
 from config import db, bcrypt
 
+
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
 
@@ -24,6 +25,7 @@ class User(db.Model, SerializerMixin):
     def __repr__(self):
         return f"User {self.username}, ID: {self.id}"
 
+
 class Artist(db.Model):
     __tablename__ = "artists"
 
@@ -32,6 +34,7 @@ class Artist(db.Model):
 
     def __init__(self, name):
         self.name = name
+
 
 class Museum(db.Model):
     __tablename__ = "museums"
@@ -44,6 +47,7 @@ class Museum(db.Model):
         self.name = name
         self.city = city
 
+
 class City(db.Model):
     __tablename__ = "cities"
 
@@ -53,22 +57,25 @@ class City(db.Model):
     def __init__(self, name):
         self.name = name
 
+
 class Review(db.Model, SerializerMixin):  # Make sure to add SerializerMixin
     __tablename__ = "reviews"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Correct foreign key references
-    museum_id = db.Column(db.Integer, db.ForeignKey('museums.id'))
-    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
+    user_id = db.Column(
+        db.Integer, db.ForeignKey("users.id"), nullable=False
+    )  # Correct foreign key references
+    museum_id = db.Column(db.Integer, db.ForeignKey("museums.id"))
+    artist_id = db.Column(db.Integer, db.ForeignKey("artists.id"))
     text = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Integer, nullable=False)
 
     def serialize(self):
         return {
-            'id': self.id,
-            'user_id': self.user_id,
-            'museum_id': self.museum_id,
-            'artist_id': self.artist_id,
-            'text': self.text,
-            'rating': self.rating
+            "id": self.id,
+            "user_id": self.user_id,
+            "museum_id": self.museum_id,
+            "artist_id": self.artist_id,
+            "text": self.text,
+            "rating": self.rating,
         }

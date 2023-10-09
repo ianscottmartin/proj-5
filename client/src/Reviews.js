@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import withNavbar from './Layout';
 import ReviewForm from './ReviewForm';
-import MuseumReviewForm from './MuseumReview'; // Import MuseumReviewForm
-import ArtistReviews from './ArtistReviews'; // Import ArtistReviews
-import ArtistList from './ArtistsList'; // Import ArtistsList
-import { Formik } from 'formik';
+import MuseumReviewForm from './MuseumReview';
+import ArtistReviews from './ArtistReviews';
+import ArtistList from './ArtistsList';
+
 
 function Reviews() {
   const [error, setError] = useState(null);
   const [reviews, setReviews] = useState([]); // Define the reviews state variable
-  const museum_id = 1; // Replace '1' with the actual museum_id you want to retrieve
+  const museum_id = 1;
 
   // useEffect(() => {
   //   // Fetch reviews and update the reviews state
@@ -29,7 +29,7 @@ function Reviews() {
   // }, [museum_id]);
 
   const handleReviewSubmit = (reviewData) => {
-    const artist_id = 2; // Replace '2' with the actual artist_id you want to submit a review for
+    const artist_id = 2;
 
     fetch(`/api/reviews/artists/${artist_id}`, {
       method: 'POST',
@@ -45,13 +45,11 @@ function Reviews() {
         return response.json();
       })
       .then((data) => {
-        // Handle success, e.g., fetch updated reviews from the API
-        // and update the state to show the latest reviews
-        // You can also provide user feedback here if needed
+
       })
       .catch((error) => {
         console.error('Error submitting review:', error);
-        // Handle the error and provide user feedback if needed
+
       });
   };
 
@@ -66,17 +64,17 @@ function Reviews() {
             reviews.map((review) => (
               <div key={review.id}>
                 <p>{review.text}</p>
-                {/* Render other review details as needed */}
+
               </div>
             ))
           ) : (
             <p>No reviews available for this museum/artist.</p>
           )}
           <ReviewForm onSubmit={handleReviewSubmit} />
-          {/* Add MuseumReviewForm and ArtistReviews here */}
+
           <MuseumReviewForm />
           <ArtistReviews />
-          <ArtistList /> {/* Render the ArtistsList component here */}
+          <ArtistList />
         </div>
       )}
     </div>

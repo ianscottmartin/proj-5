@@ -1,5 +1,5 @@
 
-// import { Formik } from 'formik';
+
 import { useState } from 'react';
 
 function ReviewForm({ entityType, entityId, onReviewSubmit }) {
@@ -27,13 +27,13 @@ function ReviewForm({ entityType, entityId, onReviewSubmit }) {
         return response.json();
       })
       .then((data) => {
-        // Handle success, e.g., refresh the reviews or provide user feedback
+
         onReviewSubmit(data);
       })
       .catch((error) => {
         setSubmitting(false);
 
-        // Handle the error and provide user feedback if needed
+
       });
   };
 

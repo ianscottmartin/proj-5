@@ -1,46 +1,76 @@
 // Login.js
 import React, { useState } from 'react';
 import withNavbar from './Layout';
-function Login() {
-    console.log('Login component rendered'); // Add this line for debugging
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
 
-    const handleSubmit = async (e) => {
+function Login({ onLogin }) {
+    const [form, setForm] = useState({
+        username: '',
+        password: ''
+    })
+
+    function handleChange(e) {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    function handleSubmit(e) {
         e.preventDefault();
+        const loginInfo = {
+            username: form.username,
+            password: form.password
+        }
+        fetch('/login', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginInfo)
+        })
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((user) => onLogin(user))
+                }
+                else {
+                    r.json().then((error) => alert(error.message))
+                }
+            })
+        setForm({
+            username: '',
+            password: ''
+        })
 
-        // Perform form validation, API request, and success/error handling here
-
-        // Reset the form
-        setFormData({
-            email: '',
-            password: '',
-        });
-    };
+    }
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <h4>Username:</h4>
+            <input
+                type='text'
+                placeholder="Username..."
+                name='username'
+                id='username'
+                autoComplete='off'
+                value={form.username}
+                onChange={handleChange}
+            />
+            <h4>Password:</h4>
+            <input
+                type='password'
+                placeholder="Password..."
+                name='password'
+                id='password'
+                autoComplete='current-password'
+                value={form.password}
+                onChange={handleChange}
+            />
+            <button type='submit'>Login</button>
+        </form>
     );
 }
+
+
 
 export default withNavbar(Login);
